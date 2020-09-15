@@ -153,10 +153,7 @@ nmap <silent> <leader>q :SyntasticCheck # <CR> :bp <BAR> bd #<CR>
 let g:ale_c_parse_makefile=1
 let g:ale_c_parse_compile_commands=1
 
-let g:ale_cpp_clang_options="-I/Users/sergei/openpilot/selfdrive"
-
 " select the linters used by Ale
-let g:ale_python_flake8_executable='python3'
 let g:ale_python_auto_pipenv=1
 let g:ale_python_flake8_auto_pipenv=1
 let g:ale_linters = {
