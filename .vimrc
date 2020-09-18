@@ -55,6 +55,7 @@ Plugin 'flazz/vim-colorschemes'             " Colorschemes
 Plugin 'vimwiki/vimwiki'                    " Personal Wiki
 Plugin 'jreybert/vimagit'                   " Git Operations
 Plugin 'airblade/vim-gitgutter'             " Git changes
+Plugin 'tpope/vim-fugitive'                 " Execute git commands in vim
 " Plugin 'kien/rainbow_parentheses.vim'       " Rainbow Parentheses
 Plugin 'ryanoasis/vim-devicons'             " Dev Icons
 Plugin 'mhinz/vim-startify'                 " Vim Start Page
@@ -62,6 +63,8 @@ Plugin 'cstrahan/vim-capnp'                 " syntax highlighting, folding and (
 Plugin 'jpalardy/vim-slime'                 " run Python code from Vim in IPython, supporting code cells
 Plugin 'hanschen/vim-ipython-cell'          " Run Python code and cells in iPython
 Plugin 'thinca/vim-localrc'
+Plugin 'jiangmiao/auto-pairs'               " Insert or delete brackets, parens, quotes in pair
+
 "-------------------=== Snippets support ===--------------------
 Plugin 'garbas/vim-snipmate'                " Snippets manager
 Plugin 'MarcWeber/vim-addon-mw-utils'       " dependencies #1
