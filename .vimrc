@@ -49,6 +49,7 @@ Plugin 'ludovicchabant/vim-gutentags'       " Jump to definitioin
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy search
 Plugin 'junegunn/fzf.vim'
 Plugin 'airblade/vim-rooter'                " Changes the working directory to the project root
+"
 "-------------------=== Other ===-------------------------------
 Plugin 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
 Plugin 'flazz/vim-colorschemes'             " Colorschemes
@@ -56,7 +57,6 @@ Plugin 'vimwiki/vimwiki'                    " Personal Wiki
 Plugin 'jreybert/vimagit'                   " Git Operations
 Plugin 'airblade/vim-gitgutter'             " Git changes
 Plugin 'tpope/vim-fugitive'                 " Execute git commands in vim
-" Plugin 'kien/rainbow_parentheses.vim'       " Rainbow Parentheses
 Plugin 'ryanoasis/vim-devicons'             " Dev Icons
 Plugin 'mhinz/vim-startify'                 " Vim Start Page
 Plugin 'cstrahan/vim-capnp'                 " syntax highlighting, folding and (simple) indentation rules for Cap'n Proto schema files
@@ -75,14 +75,17 @@ Plugin 'honza/vim-snippets'                 " snippets repo
 Plugin 'scrooloose/nerdcommenter'           " Easy code documentation
 Plugin 'mitsuhiko/vim-sparkup'              " Sparkup(XML/jinja/htlm-django/etc.) support
 Plugin 'ekalinin/Dockerfile.vim'            " Docker syntax highlighting
+Plugin 'puremourning/vimspector'            " Debugging
+Plugin 'elzr/vim-json'                      " JSON highlighting
 
 "-------------------=== Python  ===-----------------------------
 Plugin 'klen/python-mode'                   " Python mode (docs, refactor, lints...)
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'mitsuhiko/vim-python-combined'
 Plugin 'mitsuhiko/vim-jinja'
-" Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'lambdalisue/vim-pyenv'
+Plugin 'mgedmin/python-imports.vim'         " Auto import
 
 " All of your Plugins must be added before the following line
 call vundle#end()                           " required
@@ -99,8 +102,8 @@ endif
 set encoding=utf-8
 " set t_Co=256                                " 256 colors
 set guifont=mononoki\ Nerd\ Font\ 18
-colorscheme solarized8_dark                 " set vim colorscheme
-let g:airline_theme='solarized'                " set airline theme
+colorscheme solarized8_dark_high            " set vim colorscheme
+let g:airline_theme='solarized'             " set airline theme
 syntax enable                               " enable syntax highlighting
 
 set pyxversion=0
@@ -141,13 +144,25 @@ set sessionoptions-=blank
 tab sball
 set switchbuf=useopen
 set laststatus=2
-nmap <F9> :bprev<CR>
-nmap <F10> :bnext<CR>
+" nmap <F9> :bprev<CR>
+" nmap <F10> :bnext<CR>
 nmap <silent> <leader>q :SyntasticCheck # <CR> :bp <BAR> bd #<CR>
+
+"=====================================================
+" vimspector Settings
+"=====================================================
+let g:vimspector_enable_mappings = 'HUMAN'
+packadd! vimspector
+nmap <leader>dd :call vimspector#Launch()<CR>
+nmap <leader>dx :VimspectorReset<CR>
+nmap <leader>dx :VimspectorEval
+nmap <leader>dx :VimspectorWatch
+nmap <leader>dx :VimspectorShowOutput
 
 "=====================================================
 " YouCompleteMe Settings
 "=====================================================
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "=====================================================
 " Ale Settings (Linting)
@@ -164,8 +179,9 @@ let g:ale_linters = {
   \ 'javascript': ['eslint'],
   \ 'cpp': ['clang'],
   \ }
+
 let g:ale_fixers = {'python': ['yapf']}
-nmap <F8> <Plug>(ale_fix)
+nmap <F8> :ALEFix<CR>
 
 let g:ale_sign_priority=30
 let g:gitgutter_sign_priority=9
@@ -175,11 +191,6 @@ let g:airline#extensions#ale#enabled = 1
 
 " Ale Gutter
 let g:ale_sign_column_always = 1
-
-"=====================================================
-"" Relative Numbering 
-"=====================================================
-nnoremap <F4> :set relativenumber!<CR>
 
 "=====================================================
 "" Search settings
@@ -209,7 +220,7 @@ let g:airline_powerline_fonts=1
 "=====================================================
 "" TagBar settings
 "=====================================================
-let g:tagbar_autofocus=0
+let g:tagbar_autofocus=1
 let g:tagbar_width=42
 
 " Autopen is throwing an error when tabar is closed with nmap
@@ -309,14 +320,6 @@ let g:DevIconsEnableFolderExtensionPatternMatching = 0
 "" SnipMate settings
 "=====================================================
 let g:snippets_dir='~/.vim/vim-snippets/snippets'
-
-"=====================================================
-"" Rainbow Parentheses Autoload 
-"=====================================================
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound
-" au Syntax * RainbowParenthesesLoadSquare
-" au Syntax * RainbowParenthesesLoadBraces
 
 
 "=====================================================
@@ -418,7 +421,7 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 "" FZF Settings 
 "=====================================================
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'down:75%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 nmap <Leader>f :FZF<CR>
 nmap <Leader>F :Rg<CR>
@@ -464,7 +467,7 @@ let g:pymode_options_max_line_length=120
 
 
 " virtualenv
-" g:pymode_virtualenv=1
+let g:pymode_virtualenv=1
 
 " breakpoints
 let g:pymode_breakpoint=1
@@ -507,7 +510,7 @@ let g:pymode_folding=0
 
 " code running
 let g:pymode_run=1
-let g:pymode_run_bind='<F5>'
+" let g:pymode_run_bind='<F5>'
 
 let g:ale_sign_column_always = 0
 let g:ale_emit_conflict_warnings = 0                                                                         
@@ -531,6 +534,9 @@ vno <down> <Nop>
 vno <left> <Nop>
 vno <right> <Nop>
 vno <up> <Nop>
+
+" python-imports
+map <F5>    :ImportName<CR>
 
 "------------------------------------------------------------------------------
 " slime configuration 
@@ -592,3 +598,10 @@ nnoremap <Leader>d :SlimeSend1 %debug<CR>
 
 " map <Leader>q to exit debug mode or IPython
 nnoremap <Leader>q :SlimeSend1 exit<CR>
+
+"=====================================================
+"" vim-json settings
+"=====================================================
+" override settings of vim-indentguides plugin
+autocmd InsertEnter *.json setlocal conceallevel=2 concealcursor=
+" autocmd InsertLeave *.json setlocal conceallevel=2 concealcursor=inc
