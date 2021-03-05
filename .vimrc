@@ -65,12 +65,6 @@ Plugin 'hanschen/vim-ipython-cell'          " Run Python code and cells in iPyth
 Plugin 'thinca/vim-localrc'
 Plugin 'jiangmiao/auto-pairs'               " Insert or delete brackets, parens, quotes in pair
 
-"-------------------=== Snippets support ===--------------------
-Plugin 'garbas/vim-snipmate'                " Snippets manager
-Plugin 'MarcWeber/vim-addon-mw-utils'       " dependencies #1
-Plugin 'tomtom/tlib_vim'                    " dependencies #2
-Plugin 'honza/vim-snippets'                 " snippets repo
-
 "-------------------=== Languages support ===-------------------
 Plugin 'scrooloose/nerdcommenter'           " Easy code documentation
 Plugin 'mitsuhiko/vim-sparkup'              " Sparkup(XML/jinja/htlm-django/etc.) support
@@ -241,7 +235,19 @@ let g:NERDTreeChDirMode = 2
 let NERDTreeHijackNetrw = 0
 
 "=====================================================
-"" NERDComment Settings 
+"" UltiSnips settings
+"=====================================================
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" let g:UltiSnipsExpandTrigger=";"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+"=====================================================
+"" NERDComment Settings
 "=====================================================
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -314,13 +320,6 @@ let g:DevIconsEnableFolderPatternMatching = 1
 
 " enable file extension pattern matching glyphs on folder/directory (disabled by default with 0)
 let g:DevIconsEnableFolderExtensionPatternMatching = 0
-
-
-"=====================================================
-"" SnipMate settings
-"=====================================================
-let g:snippets_dir='~/.vim/vim-snippets/snippets'
-
 
 "=====================================================
 "" Gutentags settings
