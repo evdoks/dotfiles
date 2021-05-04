@@ -20,6 +20,9 @@ else
     set ttymouse=xterm2
 end
 
+"-------------------=== vim-polyglot  ===-----------------------------
+let g:polyglot_disabled = ['python']        " Must be declared before ploylgloat is loaded
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -67,10 +70,8 @@ Plugin 'jiangmiao/auto-pairs'               " Insert or delete brackets, parens,
 
 "-------------------=== Languages support ===-------------------
 Plugin 'scrooloose/nerdcommenter'           " Easy code documentation
-Plugin 'mitsuhiko/vim-sparkup'              " Sparkup(XML/jinja/htlm-django/etc.) support
-Plugin 'ekalinin/Dockerfile.vim'            " Docker syntax highlighting
+Plugin 'sheerun/vim-polyglot'               " A collection of language packs
 Plugin 'puremourning/vimspector'            " Debugging
-Plugin 'elzr/vim-json'                      " JSON highlighting
 
 "-------------------=== Python  ===-----------------------------
 Plugin 'klen/python-mode'                   " Python mode (docs, refactor, lints...)
@@ -132,6 +133,9 @@ set exrc                                    " enable usage of additional .vimrc 
 set secure                                  " prohibit .vimrc files to execute shell, create files, etc...
 set sessionoptions-=blank
 
+autocmd BufLeave,FocusLost * silent! wall   " autosave on leaving buffer and loosing focus
+
+
 "=====================================================
 " Tabs / Buffers settings
 "=====================================================
@@ -140,7 +144,8 @@ set switchbuf=useopen
 set laststatus=2
 " nmap <F9> :bprev<CR>
 " nmap <F10> :bnext<CR>
-nmap <silent> <leader>q :SyntasticCheck # <CR> :bp <BAR> bd #<CR>
+nmap <silent> <leader>q: SyntasticCheck # <CR> :bp <BAR> bd #<CR>
+command! Bd bp|bd #      " delete buffer without closing split
 
 "=====================================================
 " vimspector Settings
@@ -424,6 +429,7 @@ let $FZF_DEFAULT_OPTS="--ansi --preview-window 'down:75%' --layout reverse --mar
 
 nmap <Leader>f :FZF<CR>
 nmap <Leader>F :Rg<CR>
+nnoremap <Leader>B :Buffers<CR>
 
 "=====================================================
 "" Python settings
@@ -469,8 +475,8 @@ let g:pymode_options_max_line_length=120
 let g:pymode_virtualenv=1
 
 " breakpoints
-let g:pymode_breakpoint=1
-let g:pymode_breakpoint_key='<leader>b'
+" let g:pymode_breakpoint=1
+" let g:pymode_breakpoint_key='<leader>b'
 
 " syntax highlight
 let g:pymode_syntax=1
@@ -535,7 +541,7 @@ vno <right> <Nop>
 vno <up> <Nop>
 
 " python-imports
-map <F5>    :ImportName<CR>
+map <S-F5> :ImportName<CR>
 
 "------------------------------------------------------------------------------
 " slime configuration 
@@ -597,10 +603,3 @@ nnoremap <Leader>d :SlimeSend1 %debug<CR>
 
 " map <Leader>q to exit debug mode or IPython
 nnoremap <Leader>q :SlimeSend1 exit<CR>
-
-"=====================================================
-"" vim-json settings
-"=====================================================
-" override settings of vim-indentguides plugin
-autocmd InsertEnter *.json setlocal conceallevel=2 concealcursor=
-" autocmd InsertLeave *.json setlocal conceallevel=2 concealcursor=inc

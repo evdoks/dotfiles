@@ -147,3 +147,4 @@ eval "$(direnv hook zsh)"
 
 # alias for git used for tracking dot files in .cfg repo
 alias config='/usr/bin/git --git-dir=/Users/sergei/.cfg/ --work-tree=/Users/sergei'
+source /Users/sergei/Development/OpenPilot/aspilot/tools/openpilot_env.sh
