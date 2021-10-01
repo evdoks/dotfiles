@@ -110,26 +110,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/sergei/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/sergei/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/sergei/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/sergei/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # vim ctags location
 alias ctags=/usr/local/bin/ctags
-
-# ssh into comma2
-alias ssh_comma="ssh -p 8022 -i ~/.ssh/openpilot_rsa"
 
 # check for existence of pyenv and initialize it
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -147,4 +129,10 @@ eval "$(direnv hook zsh)"
 
 # alias for git used for tracking dot files in .cfg repo
 alias config='/usr/bin/git --git-dir=/Users/sergei/.cfg/ --work-tree=/Users/sergei'
-source /Users/sergei/Development/OpenPilot/aspilot/tools/openpilot_env.sh
+
+# OpenPilot cofiguration
+source ~/openpilot/tools/openpilot_env.sh
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/qt@5/bin:$PATH"
+export PATH="$PATH:$HOME/.cargo/bin"
