@@ -15,13 +15,13 @@ set mouse=a
 
 " use mouse in vim and tmux
 if has("mouse_sgr")
-    set ttymouse=sgr
+  set ttymouse=sgr
 else
-    set ttymouse=xterm2
+  set ttymouse=xterm2
 end
 
 "-------------------=== vim-polyglot  ===-----------------------------
-let g:polyglot_disabled = ['python']        " Must be declared before ploylgloat is loaded
+" let g:polyglot_disabled = ['python']        " Must be declared before polyglot is loaded if using python highlighting
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -45,7 +45,7 @@ Plugin 'vim-airline/vim-airline-themes'     " Themes for airline
 Plugin 'fisadev/FixedTaskList.vim'          " Pending tasks list
 Plugin 'MattesGroeger/vim-bookmarks'        " Bookmarks
 Plugin 'thaerkh/vim-indentguides'           " Visual representation of indents
-Plugin 'dense-analysis/ale'                 " Async Lint Engine
+" Plugin 'dense-analysis/ale'                 " Async Lint Engine
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy search
 Plugin 'junegunn/fzf.vim'
 Plugin 'airblade/vim-rooter'                " Changes the working directory to the project root
@@ -71,7 +71,6 @@ Plugin 'sheerun/vim-polyglot'               " A collection of language packs
 Plugin 'puremourning/vimspector'            " Debugging
 
 "-------------------=== Python  ===-----------------------------
-Plugin 'klen/python-mode'                   " Python mode (docs, refactor, lints...)
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'mitsuhiko/vim-python-combined'
 Plugin 'mitsuhiko/vim-jinja'
@@ -92,8 +91,8 @@ call vundle#end()                           " required
 " install vim-plugin
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -110,7 +109,7 @@ filetype plugin indent on
 """ General settings
 ""=====================================================
 if filereadable(expand("~/.vimrc_background"))
-  source ~/.vimrc_background
+source ~/.vimrc_background
 endif
 set encoding=utf-8
 " set t_Co=256                                " 256 colors
@@ -320,114 +319,6 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-hea
 nmap <Leader>ff :FZF<CR>
 nmap <Leader>F :Rg<CR>
 nnoremap <Leader>B :Buffers<CR>
-
-"=====================================================
-"" Python settings
-"=====================================================
-
-" python executables for different plugins
-let g:pymode_python='python3'
-
-let g:ale_emit_conflict_warnings = 0
-let g:airline#extensions#ale#enabled = 1
-let g:pymode_rope_lookup_project = 0
-let g:airline#extensions#tabline#enabled = 1
-
-" rope
-let g:pymode_rope=0
-let g:pymode_rope_completion=0
-let g:pymode_rope_complete_on_dot=0
-let g:pymode_rope_auto_project=0
-let g:pymode_rope_enable_autoimport=0
-let g:pymode_rope_autoimport_generate=0
-let g:pymode_rope_guess_project=0
-
-" documentation
-let g:pymode_doc=0
-let g:pymode_doc_bind='K'
-
-" lints
-let g:pymode_lint=0
-
-
-" max line length
-" also update ~/.config/flake8 with
-" [flake8]
-" max-line-length = 100
-let g:pymode_options_max_line_length=120
-
-
-" virtualenv
-let g:pymode_virtualenv=1
-
-" breakpoints
-" let g:pymode_breakpoint=1
-" let g:pymode_breakpoint_key='<leader>b'
-
-" syntax highlight
-let g:pymode_syntax=1
-let g:pymode_syntax_slow_sync=1
-let g:pymode_syntax_all=1
-let g:pymode_syntax_print_as_function=g:pymode_syntax_all
-let g:pymode_syntax_highlight_async_await=g:pymode_syntax_all
-let g:pymode_syntax_highlight_equal_operator=g:pymode_syntax_all
-let g:pymode_syntax_highlight_stars_operator=g:pymode_syntax_all
-let g:pymode_syntax_highlight_self=g:pymode_syntax_all
-let g:pymode_syntax_indent_errors=g:pymode_syntax_all
-let g:pymode_syntax_string_formatting=g:pymode_syntax_all
-let g:pymode_syntax_space_errors=g:pymode_syntax_all
-let g:pymode_syntax_string_format=g:pymode_syntax_all
-let g:pymode_syntax_string_templates=g:pymode_syntax_all
-let g:pymode_syntax_doctests=g:pymode_syntax_all
-let g:pymode_syntax_builtin_objs=g:pymode_syntax_all
-let g:pymode_syntax_builtin_types=g:pymode_syntax_all
-let g:pymode_syntax_highlight_exceptions=g:pymode_syntax_all
-let g:pymode_syntax_docstrings=g:pymode_syntax_all
-
-" highlight 'long' lines (>= 80 symbols) in python files
-" augroup vimrc_autocmds
-"     autocmd!
-"     autocmd FileType python,rst,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
-"     autocmd FileType python,rst,c,cpp match Excess /\%81v.*/
-"     autocmd FileType python,rst,c,cpp set nowrap
-"     autocmd FileType python,rst,c,cpp set colorcolumn=100
-" augroup END
-
-" code folding
-let g:pymode_folding=0
-
-" pep8 indents
-" let g:pymode_indent=1
-
-" code running
-let g:pymode_run=1
-" let g:pymode_run_bind='<F5>'
-
-let g:ale_sign_column_always = 0
-let g:ale_emit_conflict_warnings = 0                                                                         
-let g:airline#extensions#ale#enabled = 1
-let g:pymode_rope_lookup_project = 0
-let g:airline#extensions#tabline#enabled = 1
-
-imap <F5> <Esc>:w<CR>:!clear;python %<CR>
-
-no <down> <Nop>
-no <left> <Nop>
-no <right> <Nop>
-no <up> <Nop>
-
-ino <down> <Nop>
-ino <left> <Nop>
-ino <right> <Nop>
-ino <up> <Nop>
-
-vno <down> <Nop>
-vno <left> <Nop>
-vno <right> <Nop>
-vno <up> <Nop>
-
-" python-imports
-map <S-F5> :ImportName<CR>
 
 "------------------------------------------------------------------------------
 " vim-dadbod configuration
