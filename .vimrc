@@ -1,4 +1,4 @@
-" call has('python3')
+call has('python3')
 
 " enable debug mode for vim
 " let g:pymode_debug=1
@@ -21,7 +21,7 @@ else
 end
 
 "-------------------=== vim-polyglot  ===-----------------------------
-" let g:polyglot_disabled = ['python']        " Must be declared before polyglot is loaded if using python highlighting
+let g:polyglot_disabled = ['python']        " Must be declared before polyglot is loaded if using python highlighting
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -97,7 +97,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Code completion and navigation
+Plug 'neoclide/coc.nvim', {'branch': 'release'}       " Code completion and navigation
+Plug 'vim-python/python-syntax'
 
 call plug#end()
 
@@ -425,7 +426,7 @@ endif
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+          \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
