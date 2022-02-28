@@ -23,6 +23,7 @@ end
 "-------------------=== vim-polyglot  ===-----------------------------
 let g:polyglot_disabled = ['python']        " Must be declared before polyglot is loaded if using python highlighting
 
+"------------------=== Vundle Plugins  ===-----------------------
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -34,54 +35,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'                  " Vundle Plugin Manager
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-"-------------------=== Code/Project navigation ===-------------
-Plugin 'scrooloose/nerdtree'                " Project and file navigation
-Plugin 'Xuyuanp/nerdtree-git-plugin'        " NerdTree git functionality
-Plugin 'majutsushi/tagbar'                  " Class/module browser
-Plugin 'vim-ctrlspace/vim-ctrlspace'        " Tabs/Buffers/Fuzzy/Workspaces/Bookmarks
-Plugin 'mileszs/ack.vim'                    " Ag/Grep
-Plugin 'vim-airline/vim-airline'            " Lean & mean status/tabline for vim
-Plugin 'vim-airline/vim-airline-themes'     " Themes for airline
-Plugin 'fisadev/FixedTaskList.vim'          " Pending tasks list
-Plugin 'MattesGroeger/vim-bookmarks'        " Bookmarks
-Plugin 'thaerkh/vim-indentguides'           " Visual representation of indents
-" Plugin 'dense-analysis/ale'                 " Async Lint Engine
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy search
-Plugin 'junegunn/fzf.vim'
-Plugin 'airblade/vim-rooter'                " Changes the working directory to the project root
-"
-"-------------------=== Other ===-------------------------------
-Plugin 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
-Plugin 'flazz/vim-colorschemes'             " Colorschemes
-Plugin 'vimwiki/vimwiki'                    " Personal Wiki
-Plugin 'jreybert/vimagit'                   " Git Operations
-Plugin 'airblade/vim-gitgutter'             " Git changes
-Plugin 'tpope/vim-fugitive'                 " Execute git commands in vim
-Plugin 'ryanoasis/vim-devicons'             " Dev Icons
-Plugin 'mhinz/vim-startify'                 " Vim Start Page
-Plugin 'cstrahan/vim-capnp'                 " syntax highlighting, folding and (simple) indentation rules for Cap'n Proto schema files
-Plugin 'jpalardy/vim-slime'                 " run Python code from Vim in IPython, supporting code cells
-Plugin 'hanschen/vim-ipython-cell'          " Run Python code and cells in iPython
-Plugin 'thinca/vim-localrc'
-Plugin 'jiangmiao/auto-pairs'               " Insert or delete brackets, parens, quotes in pair
-
-"-------------------=== Languages support ===-------------------
-Plugin 'scrooloose/nerdcommenter'           " Easy code documentation
-Plugin 'sheerun/vim-polyglot'               " A collection of language packs
-Plugin 'puremourning/vimspector'            " Debugging
-
-"-------------------=== Python  ===-----------------------------
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'mitsuhiko/vim-python-combined'
-Plugin 'mitsuhiko/vim-jinja'
-Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'lambdalisue/vim-pyenv'
-Plugin 'mgedmin/python-imports.vim'         " Auto import
-
-"-------------------=== DB  ===-----------------------------
-Plugin 'tpope/vim-dadbod'                   " Support for databases 
-Plugin 'kristijanhusak/vim-dadbod-completion'
-Plugin 'kristijanhusak/vim-dadbod-ui'       " Navigation through databases
 
 " All of your Plugins must be added before the following line
 call vundle#end()                           " required
@@ -97,8 +50,57 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+"-------------------=== Code/Project navigation ===-------------
+Plug 'scrooloose/nerdtree'                " Project and file navigation
+Plug 'Xuyuanp/nerdtree-git-plugin'        " NerdTree git functionality
+Plug 'majutsushi/tagbar'                  " Class/module browser
+Plug 'vim-ctrlspace/vim-ctrlspace'        " Tabs/Buffers/Fuzzy/Workspaces/Bookmarks
+Plug 'mileszs/ack.vim'                    " Ag/Grep
+Plug 'vim-airline/vim-airline'            " Lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline-themes'     " Themes for airline
+Plug 'fisadev/FixedTaskList.vim'          " Pending tasks list
+Plug 'MattesGroeger/vim-bookmarks'        " Bookmarks
+Plug 'thaerkh/vim-indentguides'           " Visual representation of indents
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy search
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'                " Changes the working directory to the project root
+
+"-------------------=== Other ===-------------------------------
+Plug 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
+Plug 'flazz/vim-colorschemes'             " Colorschemes
+Plug 'vimwiki/vimwiki'                    " Personal Wiki
+Plug 'jreybert/vimagit'                   " Git Operations
+Plug 'airblade/vim-gitgutter'             " Git changes
+Plug 'tpope/vim-fugitive'                 " Execute git commands in vim
+Plug 'ryanoasis/vim-devicons'             " Dev Icons
+Plug 'mhinz/vim-startify'                 " Vim Start Page
+Plug 'cstrahan/vim-capnp'                 " syntax highlighting, folding and (simple) indentation rules for Cap'n Proto schema files
+Plug 'jpalardy/vim-slime'                 " run Python code from Vim in IPython, supporting code cells
+Plug 'hanschen/vim-ipython-cell'          " Run Python code and cells in iPython
+Plug 'thinca/vim-localrc'
+Plug 'jiangmiao/auto-pairs'               " Insert or delete brackets, parens, quotes in pair
+
+"-------------------=== Languages support ===-------------------
+Plug 'scrooloose/nerdcommenter'           " Easy code documentation
+Plug 'sheerun/vim-polyglot'               " A collection of language packs
+
+"-------------------=== Python  ===-----------------------------
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'mitsuhiko/vim-python-combined'
+Plug 'mitsuhiko/vim-jinja'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'lambdalisue/vim-pyenv'
+Plug 'mgedmin/python-imports.vim'         " Auto import
+
+"-------------------=== DB  ===-----------------------------
+Plug 'tpope/vim-dadbod'                   " Support for databases 
+Plug 'kristijanhusak/vim-dadbod-completion'
+Plug 'kristijanhusak/vim-dadbod-ui'       " Navigation through databases
+
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}       " Code completion and navigation
 Plug 'vim-python/python-syntax'
+Plug 'puremourning/vimspector'
 
 call plug#end()
 
@@ -169,7 +171,6 @@ command! Bd bp|bd #      " delete buffer without closing split
 " vimspector Settings
 "=====================================================
 let g:vimspector_enable_mappings = 'HUMAN'
-packadd! vimspector
 nmap <leader>dd :call vimspector#Launch()<CR>
 nmap <leader>dx :VimspectorReset<CR>
 nmap <leader>dx :VimspectorEval
