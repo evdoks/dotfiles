@@ -14,7 +14,7 @@ export TERM="xterm-256color"
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/sergei/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -115,7 +115,7 @@ alias ctags=/usr/local/bin/ctags
 
 # check for existence of pyenv and initialize it
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
 fi
 
 # enable auto-activation of virtualenv
@@ -128,7 +128,7 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 eval "$(direnv hook zsh)"
 
 # alias for git used for tracking dot files in .cfg repo
-alias config='/usr/bin/git --git-dir=/Users/sergei/.cfg/ --work-tree=/Users/sergei'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # OpenPilot cofiguration
 source ~/openpilot/tools/openpilot_env.sh
