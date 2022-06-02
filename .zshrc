@@ -80,7 +80,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git pipenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,12 +110,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# vim ctags location
-alias ctags=/usr/local/bin/ctags
 
 # check for existence of pyenv and initialize it
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
 fi
 
 # enable auto-activation of virtualenv
@@ -131,12 +130,14 @@ eval "$(direnv hook zsh)"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # OpenPilot cofiguration
-source ~/openpilot/tools/openpilot_env.sh
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="/usr/local/opt/qt@5/bin:$PATH"
-export PATH="$PATH:$HOME/.cargo/bin"
+# source ~/openpilot/tools/openpilot_env.sh
+# export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+# export PATH="/usr/local/opt/curl/bin:$PATH"
+# export PATH="/usr/local/opt/qt@5/bin:$PATH"
+# export PATH="$PATH:$HOME/.cargo/bin"
 
+# NVM configuration
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source /Users/sevdokim/OpenPilot/openpilot/tools/openpilot_env.sh
