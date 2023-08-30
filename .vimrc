@@ -1,5 +1,3 @@
-call has('python3')
-
 " enable debug mode for vim
 " let g:pymode_debug=1
 
@@ -20,8 +18,10 @@ else
   set ttymouse=xterm2
 end
 
+" increase redrawtime to allow for syntax highlighting for large files
+set redrawtime=10000
 "-------------------=== vim-polyglot  ===-----------------------------
-let g:polyglot_disabled = ['python']        " Must be declared before polyglot is loaded if using python highlighting
+" let g:polyglot_disabled = ['python']        " Must be declared before polyglot is loaded if using python highlighting
 
 "------------------=== Vundle Plugins  ===-----------------------
 " set the runtime path to include Vundle and initialize
@@ -83,6 +83,7 @@ Plug 'jiangmiao/auto-pairs'               " Insert or delete brackets, parens, q
 "-------------------=== Languages support ===-------------------
 Plug 'scrooloose/nerdcommenter'           " Easy code documentation
 Plug 'sheerun/vim-polyglot'               " A collection of language packs
+Plug 'vim-python/python-syntax'
 
 "-------------------=== Python  ===-----------------------------
 Plug 'hynek/vim-python-pep8-indent'
@@ -99,8 +100,8 @@ Plug 'kristijanhusak/vim-dadbod-ui'       " Navigation through databases
 
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}       " Code completion and navigation
-Plug 'vim-python/python-syntax'
 Plug 'puremourning/vimspector'
+Plug 'github/copilot.vim'                 " Copilot
 
 call plug#end()
 
@@ -200,7 +201,6 @@ let g:tagbar_width=42
 " autocmd BufEnter *.py :call tagbar#autoopen(0)
 
 autocmd BufWinLeave *.py :TagbarClose
-let g:tagbar_ctags_bin = "/usr/local/bin/ctags"
 nmap <leader>" :TagbarToggle<CR>
 
 "=====================================================
@@ -399,6 +399,10 @@ nnoremap <Leader>q :SlimeSend1 exit<CR>
 "" Coc.Vim settings
 "=====================================================
 
+"Coc.nvim extensions
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html',
+            \ 'coc-db', 'coc-pyright', 'coc-clangd']
+
 " Fix issue with inverted colors in floating texts for errors/warnings
 hi Pmenu cterm=NONE
 
@@ -556,3 +560,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
