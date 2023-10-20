@@ -15,7 +15,9 @@ set mouse=a
 if has("mouse_sgr")
   set ttymouse=sgr
 else
-  set ttymouse=xterm2
+  if !has('nvim')
+    set ttymouse=xterm2
+  endif
 end
 
 " increase redrawtime to allow for syntax highlighting for large files
