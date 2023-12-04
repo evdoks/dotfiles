@@ -7,7 +7,7 @@ set hidden
 set showtabline=0
 
 " set true color support
-set termguicolors
+" set termguicolors
 
 set mouse=a
 
@@ -22,8 +22,6 @@ end
 
 " increase redrawtime to allow for syntax highlighting for large files
 set redrawtime=10000
-"-------------------=== vim-polyglot  ===-----------------------------
-" let g:polyglot_disabled = ['python']        " Must be declared before polyglot is loaded if using python highlighting
 
 "------------------=== Vundle Plugins  ===-----------------------
 " set the runtime path to include Vundle and initialize
@@ -84,16 +82,11 @@ Plug 'jiangmiao/auto-pairs'               " Insert or delete brackets, parens, q
 
 "-------------------=== Languages support ===-------------------
 Plug 'scrooloose/nerdcommenter'           " Easy code documentation
-Plug 'sheerun/vim-polyglot'               " A collection of language packs
-Plug 'vim-python/python-syntax'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 "-------------------=== Python  ===-----------------------------
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'mitsuhiko/vim-python-combined'
-Plug 'mitsuhiko/vim-jinja'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'lambdalisue/vim-pyenv'
-Plug 'mgedmin/python-imports.vim'         " Auto import
 
 "-------------------=== DB  ===-----------------------------
 Plug 'tpope/vim-dadbod'                   " Support for databases 
