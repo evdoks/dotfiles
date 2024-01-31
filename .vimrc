@@ -23,23 +23,6 @@ end
 " increase redrawtime to allow for syntax highlighting for large files
 set redrawtime=10000
 
-"------------------=== Vundle Plugins  ===-----------------------
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'                  " Vundle Plugin Manager
-
-" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-
-" All of your Plugins must be added before the following line
-call vundle#end()                           " required
-
-
 "------------------=== vim-plugin  ===-----------------------
 " install vim-plugin
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -75,8 +58,8 @@ Plug 'tpope/vim-fugitive'                 " Execute git commands in vim
 Plug 'ryanoasis/vim-devicons'             " Dev Icons
 Plug 'mhinz/vim-startify'                 " Vim Start Page
 Plug 'cstrahan/vim-capnp'                 " syntax highlighting, folding and (simple) indentation rules for Cap'n Proto schema files
-Plug 'jpalardy/vim-slime'                 " run Python code from Vim in IPython, supporting code cells
-Plug 'hanschen/vim-ipython-cell'          " Run Python code and cells in iPython
+Plug 'jpalardy/vim-slime', { 'for': 'python' }           " run Python code from Vim in IPython, supporting code cells
+Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }    " Run Python code and cells in iPython
 Plug 'thinca/vim-localrc'
 Plug 'jiangmiao/auto-pairs'               " Insert or delete brackets, parens, quotes in pair
 
