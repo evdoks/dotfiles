@@ -1,7 +1,3 @@
-" enable debug mode for vim
-" let g:pymode_debug=1
-
-set nocompatible              " required
 filetype off                  " required
 set hidden
 set showtabline=0
@@ -50,11 +46,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy search
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'                " Changes the working directory to the project root
 Plug 'tpope/vim-sleuth'                   " Automatic identation detection
-
+Plug 'ruanyl/vim-gh-line'                 " Opens a link to the current line on GitHub
 "-------------------=== Other ===-------------------------------
 Plug 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
 Plug 'flazz/vim-colorschemes'             " Colorschemes
-Plug 'vimwiki/vimwiki'                    " Personal Wiki
 Plug 'jreybert/vimagit'                   " Git Operations
 Plug 'airblade/vim-gitgutter'             " Git changes
 Plug 'tpope/vim-fugitive'                 " Execute git commands in vim
@@ -100,6 +95,7 @@ endif
 set encoding=utf-8
 " set t_Co=256                                " 256 colors
 set guifont=mononoki\ Nerd\ Font\ 18
+" colorscheme solarized8_dark_high            " set vim colorscheme
 colorscheme solarized8_dark_high            " set vim colorscheme
 let g:airline_theme='solarized'             " set airline theme
 syntax enable                               " enable syntax highlighting

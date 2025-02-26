@@ -123,18 +123,9 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# init direnv (https://direnv.net)
-eval "$(direnv hook zsh)"
-
 # alias for git used for tracking dot files in .cfg repo
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-# OpenPilot cofiguration
-# source ~/openpilot/tools/openpilot_env.sh
-# export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-# export PATH="/usr/local/opt/curl/bin:$PATH"
-# export PATH="/usr/local/opt/qt@5/bin:$PATH"
-# export PATH="$PATH:$HOME/.cargo/bin"
 
 # NVM configuration
 export NVM_DIR="$HOME/.nvm"
@@ -142,3 +133,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 source /Users/sevdokim/Development/OpenPilot/openpilot/tools/openpilot_env.sh
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+
+# Visual Studio Code
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
