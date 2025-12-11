@@ -96,8 +96,8 @@ set encoding=utf-8
 " set t_Co=256                                " 256 colors
 set guifont=mononoki\ Nerd\ Font\ 18
 " colorscheme solarized8_dark_high            " set vim colorscheme
-colorscheme solarized8_dark_high            " set vim colorscheme
-let g:airline_theme='solarized'             " set airline theme
+colorscheme codedark            " set vim colorscheme
+let g:airline_theme='luna'             " set airline theme
 syntax enable                               " enable syntax highlighting
 
 set pyxversion=0

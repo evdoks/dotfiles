@@ -59,14 +59,33 @@ pg_forward_load_aliases
 # Add the above block to your shell initialization file (~/.bashrc, ~/.zshrc, etc.)
 
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/sevdokim/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-
 
 ### Initialize Startship prompt customizer
 eval "$(starship init zsh)"
 
 
-# Make sure the wanted Node version wins
-nvm use --silent default
+# Automatically switch Node.js version based on .nvmrc
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    nvm use --silent default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+eval "$(direnv hook zsh)"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/sevdokim/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
